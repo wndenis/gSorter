@@ -4,7 +4,7 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
-while(True):
+while True:
     # Capture frame-by-frame
     ret, frame = cap.read()
 
@@ -15,4 +15,3 @@ while(True):
     cv2.imshow('frame', gray)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-        

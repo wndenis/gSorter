@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # detector.setModelTypeAsTinyYOLOv3()
     # detector.setModelPath(os.path.join(execution_path, "yolo-tiny.h5"))
     detector.loadModel()
-    custom_objects = detector.CustomObjects(person=True, umbrella=True, car=True, cup=True, fork=True, knife=True)
+    custom_objects = detector.CustomObjects(person=True, umbrella=True, car=True, cup=True, fork=True, knife=True, bottle=True, cell_phone=True)
 
     kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color)
 
@@ -35,10 +35,11 @@ if __name__ == "__main__":
 
         #gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         if True:
-            detections = detector.detectObjectsFromImage(input_image=frame,
+            detections = detector.detectCustomObjectsFromImage(input_image=frame,
                                                          input_type="array",
                                                          output_type="array",
-                                                         minimum_percentage_probability=70)
+                                                         minimum_percentage_probability=70,
+                                                         custom_objects=custom_objects)
             for box in detections[1]:
                 b = box['box_points']
                 cv2.rectangle(frame, b,

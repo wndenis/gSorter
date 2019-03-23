@@ -6,10 +6,6 @@ import cv2
 
 from imageai.Detection import ObjectDetection
 import os
-from time import time
-
-
-
 
 if __name__ == "__main__":
     print("Start.")
@@ -17,8 +13,10 @@ if __name__ == "__main__":
     execution_path = os.getcwd()
 
     detector = ObjectDetection()
-    detector.setModelTypeAsYOLOv3()
-    detector.setModelPath(os.path.join(execution_path, "yolo.h5"))
+    # detector.setModelTypeAsYOLOv3()
+    # detector.setModelPath(os.path.join(execution_path, "yolo.h5"))
+    detector.setModelTypeAsTinyYOLOv3()
+    detector.setModelPath(os.path.join(execution_path, "yolo-tiny.h5"))
     detector.loadModel()
 
     kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color)
@@ -29,17 +27,19 @@ if __name__ == "__main__":
         frame = kinect.get_last_color_frame()
 
         frame = np.reshape(frame, (1080, 1920, -1)).astype(np.uint8)
-        frame = cv2.resize(frame, dsize=(1920//4, 1080//4), interpolation=cv2.INTER_CUBIC)
+        frame = cv2.resize(frame, dsize=(1920//6, 1080//6), interpolation=cv2.INTER_CUBIC)
 
-        gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        detections = detector.detectObjectsFromImage(input_image=gray_frame,
-                                                     input_type="array",
-                                                     output_type="array",
-                                                     minimum_percentage_probability=10)
-        for box in detections[1]:
-            print(box)
-        print("\n\n\n\n\n\n\n")
+        #gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        if False:
+            detections = detector.detectObjectsFromImage(input_image=frame,
+                                                         input_type="array",
+                                                         output_type="array",
+                                                         minimum_percentage_probability=10)
+            for box in detections[1]:
+                cv2.rectangle(frame, box['box_points'],
+                              (0, 0, 250), 2)
+                print(box)
+                print("\n\n\n\n\n\n\n")
         # frame = np.reshape(frame, shape)
         # frame = np.uint8(frame.clip(1, 4000) / 16.)?????????????????
         # frame = cv2.bilateralFilter(frame, 9, 150, 75)

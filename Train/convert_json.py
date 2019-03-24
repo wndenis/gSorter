@@ -1,7 +1,14 @@
 import json
+import os
 
-with open("dataset\data.json", "r") as read_file:
-    with open("annotate.txt", "x") as write_file:
+annotate_path = "annotate.txt"
+json_path = "dataset\data.json"
+
+with open(json_path, "r") as read_file:
+    exists = os.path.isfile(annotate_path)
+    if exists:
+        os.remove(annotate_path)
+    with open(annotate_path, "x") as write_file:
         data = json.load(read_file)
         for line in data:
             ext_id = line['External ID']

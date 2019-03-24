@@ -13,6 +13,7 @@ if __name__ == "__main__":
     execution_path = os.getcwd()
 
     detector = ObjectDetection()
+
     detector.setModelTypeAsYOLOv3()
     detector.setModelPath(os.path.join(execution_path, "yolo.h5"))
     # detector.setModelTypeAsTinyYOLOv3()

@@ -1,4 +1,7 @@
-# Track: Logistics
+# gSorter	
+Reality Shift team project for HACKUNIVERSITY hackathon  
+  
+## Track: Logistics
 #### Smart conveyor for garbage sorting powered by neural networks
 
 ## Task

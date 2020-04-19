@@ -40,7 +40,7 @@ We wrote small module which takes camera frames, crops and scales them, and then
 </p>
 
 ### Results
-Unfortunately, we couldnt take prize due to unexpected change of task. In fact, they wanted not a neural network object recognition - any CV method was acceptable. They wanted us to program to program some kind of manipulator we were not told about.
+Unfortunately, we couldnt take prize due to unexpected change of task. In fact, they wanted not a neural network object recognition - any CV method was acceptable. They wanted us to program some kind of manipulator we were not told about.
 
 ### Conclusion
 We collected and labeled the dataset of 1000 images of Redbull cans.  
